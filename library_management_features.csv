@@ -1,0 +1,33 @@
+Category,Feature,Priority,User Type
+User Management,User Registration & Authentication,High,All
+User Management,Role-based Access Control,High,Admin
+User Management,Profile Management,Medium,All
+User Management,Password Management,Medium,All
+User Management,User Status Management,Medium,Admin
+Book Management,Add/Edit/Delete Books,High,Admin
+Book Management,Book Categorization,High,Admin
+Book Management,ISBN Management,High,Admin
+Book Management,Inventory Tracking,High,Admin
+Book Management,Duplicate Book Management,Medium,Admin
+Circulation Management,Book Borrowing,High,Student/Member
+Circulation Management,Book Return Process,High,Student/Member
+Circulation Management,Renewal Management,High,Student/Member
+Circulation Management,Reservation System,Medium,Student/Member
+Circulation Management,Fine Calculation & Payment,High,Student/Member
+Search & Discovery,Advanced Search,High,All
+Search & Discovery,Filter by Category/Author,Medium,All
+Search & Discovery,Barcode/QR Scanning,Low,Librarian
+Search & Discovery,Availability Status,High,All
+Administrative Features,Admin Dashboard,High,Admin
+Administrative Features,User Management Panel,High,Admin
+Administrative Features,System Configuration,Medium,Admin
+Administrative Features,Backup & Recovery,Medium,Admin
+Reporting & Analytics,Borrowing Reports,Medium,Admin
+Reporting & Analytics,Overdue Reports,Medium,Admin/Librarian
+Reporting & Analytics,Popular Books Analytics,Low,Admin
+Reporting & Analytics,User Activity Reports,Low,Admin
+Technical Features,RESTful APIs,High,Developer
+Technical Features,Database Optimization,High,Developer
+Technical Features,Security Implementation,High,Developer
+Technical Features,Email Notifications,Medium,All
+Technical Features,Responsive Design,High,All

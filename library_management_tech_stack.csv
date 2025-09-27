@@ -1,0 +1,20 @@
+Layer,Technology,Purpose
+Frontend,React.js,UI Framework
+Frontend,Redux/Context API,State Management
+Frontend,Material-UI/Bootstrap,UI Components
+Frontend,Axios,HTTP Client
+Backend,Node.js,Runtime Environment
+Backend,Express.js,Web Framework
+Backend,Middleware,Authentication/CORS
+Backend,Validation,Input Validation
+Database,MongoDB,Document Database
+Database,Mongoose ODM,Object Modeling
+Database,Indexing,Query Optimization
+Authentication,JWT,Token-based Auth
+Authentication,bcrypt,Password Hashing
+Deployment,Docker,Containerization
+Deployment,AWS/DigitalOcean,Cloud Hosting
+Deployment,CI/CD Pipelines,Automated Deployment
+Testing,Jest,Unit Testing
+Testing,Supertest,API Testing
+Testing,Cypress,E2E Testing
