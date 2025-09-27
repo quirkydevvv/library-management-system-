@@ -118,6 +118,9 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Static frontend (served at /app)
 app.use('/app', express.static(path.join(__dirname, 'public')));
+app.get('/app/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
