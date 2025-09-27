@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Landing from './pages/Landing'
@@ -9,9 +8,10 @@ import Profile from './pages/Profile'
 import Books from './pages/Books'
 import Transactions from './pages/Transactions'
 import ProtectedRoute from './components/ProtectedRoute'
+import { useAuth } from './hooks/useAuth'
 
 export default function App(){
-  const [user, setUser] = useState(() => ({ name: localStorage.getItem('user_name') || '' }))
+  const { user, setUser } = useAuth()
   function onLogout(){ localStorage.clear(); setUser(null) }
   return (
     <BrowserRouter basename="/app">
