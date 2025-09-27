@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 
 // Import middleware
 const { globalErrorHandler, notFound, errorLogger } = require('./middleware/errorHandler');
@@ -112,6 +113,9 @@ app.use('/api/auth/forgot-password', authLimiter);
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Static frontend (served at /app)
+app.use('/app', express.static(path.join(__dirname, 'public')));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
