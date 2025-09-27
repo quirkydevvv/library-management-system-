@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 
 // Import middleware
 const { globalErrorHandler, notFound, errorLogger } = require('./middleware/errorHandler');
@@ -49,8 +50,10 @@ const corsOptions = {
       'http://localhost:3001',
       'http://127.0.0.1:3000',
       'http://127.0.0.1:3001',
+      'http://localhost:5173',
+      'http://127.0.0.1:5173',
     ];
-    
+
     // Add production origins from environment
     if (process.env.FRONTEND_URL) {
       allowedOrigins.push(process.env.FRONTEND_URL);
@@ -112,6 +115,12 @@ app.use('/api/auth/forgot-password', authLimiter);
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Static frontend (served at /app)
+app.use('/app', express.static(path.join(__dirname, 'public')));
+app.get('/app/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {

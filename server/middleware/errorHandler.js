@@ -125,7 +125,7 @@ const formatValidationErrors = (errors) => {
 // Database connection error handler
 const handleDBConnectionError = (err) => {
   console.error('Database connection error:', err.message);
-  
+
   if (err.name === 'MongoNetworkError') {
     console.error('MongoDB network error. Please check your connection.');
   } else if (err.name === 'MongooseServerSelectionError') {
@@ -133,7 +133,12 @@ const handleDBConnectionError = (err) => {
   } else if (err.name === 'MongoParseError') {
     console.error('MongoDB connection string parse error. Please check your connection string.');
   }
-  
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn('Continuing to run without a database connection (development mode).');
+    return;
+  }
+
   process.exit(1);
 };
 
