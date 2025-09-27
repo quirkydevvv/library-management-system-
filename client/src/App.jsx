@@ -8,11 +8,14 @@ import Profile from './pages/Profile'
 import Books from './pages/Books'
 import Transactions from './pages/Transactions'
 import ProtectedRoute from './components/ProtectedRoute'
+import RoleGuard from './components/RoleGuard'
 import { useAuth } from './hooks/useAuth'
 import AdminUsers from './pages/AdminUsers'
 import Categories from './pages/Categories'
 import Authors from './pages/Authors'
 import Reservations from './pages/Reservations'
+import ManageBooks from './pages/ManageBooks'
+import BookDetail from './pages/BookDetail'
 
 export default function App(){
   const { user, setUser } = useAuth()
@@ -27,10 +30,12 @@ export default function App(){
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/books" element={<Books />} />
+        <Route path="/books/:id" element={<BookDetail />} />
         <Route path="/transactions" element={<ProtectedRoute><Transactions /></ProtectedRoute>} />
-        <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
-        <Route path="/admin/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
-        <Route path="/admin/authors" element={<ProtectedRoute><Authors /></ProtectedRoute>} />
+        <Route path="/admin/users" element={<ProtectedRoute><RoleGuard user={user} roles={['admin','librarian']}><AdminUsers /></RoleGuard></ProtectedRoute>} />
+        <Route path="/admin/categories" element={<ProtectedRoute><RoleGuard user={user} roles={['admin']}><Categories /></RoleGuard></ProtectedRoute>} />
+        <Route path="/admin/authors" element={<ProtectedRoute><RoleGuard user={user} roles={['admin','librarian']}><Authors /></RoleGuard></ProtectedRoute>} />
+        <Route path="/admin/books" element={<ProtectedRoute><RoleGuard user={user} roles={['admin','librarian']}><ManageBooks /></RoleGuard></ProtectedRoute>} />
         <Route path="/reservations" element={<ProtectedRoute><Reservations /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
