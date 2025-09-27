@@ -15,6 +15,7 @@ import Categories from './pages/Categories'
 import Authors from './pages/Authors'
 import Reservations from './pages/Reservations'
 import ManageBooks from './pages/ManageBooks'
+import ManageTransactions from './pages/ManageTransactions'
 import BookDetail from './pages/BookDetail'
 
 export default function App(){
