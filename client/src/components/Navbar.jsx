@@ -1,0 +1,23 @@
+import { Link, NavLink } from 'react-router-dom'
+import { Button } from './ui/button'
+
+export default function Navbar({ user, onLogout }) {
+  return (
+    <header className="sticky top-0 z-10 w-full border-b bg-background/80 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <Link to="/" className="font-semibold">Library</Link>
+        <nav className="flex items-center gap-2">
+          <NavLink to="/" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Home</NavLink>
+          <NavLink to="/dashboard" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Dashboard</NavLink>
+          {user? (
+            <Button variant="secondary" onClick={onLogout}>Logout</Button>
+          ) : (
+            <Button asChild>
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
+        </nav>
+      </div>
+    </header>
+  )
+}
