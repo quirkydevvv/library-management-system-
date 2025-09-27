@@ -1,11 +1,26 @@
 const mongoose = require('mongoose');
 
+let mongoMemoryServer = null;
+
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    let uri = process.env.MONGODB_URI;
+
+    const shouldUseMemory = process.env.USE_IN_MEMORY_DB === 'true' || (!uri && process.env.NODE_ENV !== 'production');
+
+    if (shouldUseMemory) {
+      const { MongoMemoryServer } = require('mongodb-memory-server');
+      mongoMemoryServer = await MongoMemoryServer.create();
+      uri = mongoMemoryServer.getUri();
+      process.env.MONGODB_URI = uri;
+      console.log(`Using in-memory MongoDB at ${uri}`);
+    }
+
+    if (!uri) {
+      throw new Error('MONGODB_URI is not set and in-memory DB is not enabled');
+    }
+
+    const conn = await mongoose.connect(uri);
 
     console.log(`MongoDB Connected: ${conn.connection.host}`);
 
@@ -13,7 +28,7 @@ const connectDB = async () => {
     await createIndexes();
   } catch (error) {
     console.error('Database connection error:', error.message);
-    process.exit(1);
+    throw error;
   }
 };
 
