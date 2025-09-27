@@ -8,13 +8,22 @@ export default function Navbar({ user, onLogout }) {
         <Link to="/" className="font-semibold">Library</Link>
         <nav className="flex items-center gap-2">
           <NavLink to="/" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Home</NavLink>
+          <NavLink to="/books" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Books</NavLink>
           <NavLink to="/dashboard" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Dashboard</NavLink>
           {user? (
-            <Button variant="secondary" onClick={onLogout}>Logout</Button>
+            <>
+              <NavLink to="/profile" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Profile</NavLink>
+              <Button variant="secondary" onClick={onLogout}>Logout</Button>
+            </>
           ) : (
-            <Button asChild>
-              <Link to="/login">Login</Link>
-            </Button>
+            <>
+              <Button asChild>
+                <Link to="/login">Login</Link>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link to="/register">Sign Up</Link>
+              </Button>
+            </>
           )}
         </nav>
       </div>
