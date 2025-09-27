@@ -36,6 +36,7 @@ export default function App(){
         <Route path="/admin/categories" element={<ProtectedRoute><RoleGuard user={user} roles={['admin']}><Categories /></RoleGuard></ProtectedRoute>} />
         <Route path="/admin/authors" element={<ProtectedRoute><RoleGuard user={user} roles={['admin','librarian']}><Authors /></RoleGuard></ProtectedRoute>} />
         <Route path="/admin/books" element={<ProtectedRoute><RoleGuard user={user} roles={['admin','librarian']}><ManageBooks /></RoleGuard></ProtectedRoute>} />
+        <Route path="/admin/transactions" element={<ProtectedRoute><RoleGuard user={user} roles={['admin','librarian']}><ManageTransactions /></RoleGuard></ProtectedRoute>} />
         <Route path="/reservations" element={<ProtectedRoute><Reservations /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
