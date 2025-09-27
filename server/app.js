@@ -50,8 +50,10 @@ const corsOptions = {
       'http://localhost:3001',
       'http://127.0.0.1:3000',
       'http://127.0.0.1:3001',
+      'http://localhost:5173',
+      'http://127.0.0.1:5173',
     ];
-    
+
     // Add production origins from environment
     if (process.env.FRONTEND_URL) {
       allowedOrigins.push(process.env.FRONTEND_URL);
