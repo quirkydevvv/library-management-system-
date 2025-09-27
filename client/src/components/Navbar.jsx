@@ -12,10 +12,11 @@ export default function Navbar({ user, onLogout }) {
           <NavLink to="/dashboard" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Dashboard</NavLink>
           {user? (
             <>
-              <NavLink to="/books" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Browse</NavLink>
               <NavLink to="/reservations" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Reservations</NavLink>
+              {(user.role==='admin' || user.role==='librarian') && (
+                <NavLink to="/admin/books" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Manage</NavLink>
+              )}
               <NavLink to="/profile" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Profile</NavLink>
-              <NavLink to="/admin/users" className={({isActive})=>`px-2 py-1 rounded ${isActive?'bg-secondary':''}`}>Admin</NavLink>
               <Button variant="secondary" onClick={onLogout}>Logout</Button>
             </>
           ) : (
